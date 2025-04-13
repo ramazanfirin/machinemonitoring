@@ -153,15 +153,17 @@ public class LorawanMessageResource {
     public ResponseEntity<Void> receive(@RequestBody String String) throws Exception {
         
     	DeviceMessageVM deviceMessageVM = lorawanMessageService.convertToDeviceMessage(String);
-    	System.out.println(deviceMessageVM.getfPort()+","+deviceMessageVM.getfCnt()+","+deviceMessageVM.getHexMessage());
+    	System.out.println("Data geldi:"+deviceMessageVM.getHexMessage());
        	
     	if(deviceMessageVM.getData() == null || deviceMessageVM.getSensor()==null) {
-    		System.out.println("sensor bulunamadı");
+    		log.info("sensor bulunamadı");
     		return ResponseEntity.ok().build();
     		
     	}
+    	
+    	log.info("sensor datası geldi.devEui:"+deviceMessageVM.getSensor().getDevEui()+",type:"+deviceMessageVM.getSensor().getType()+",value"+deviceMessageVM.getHexMessage());
     	lorawanMessageService.process(String);
-      
+    	log.info("sensor datası sisteme işlendi."+deviceMessageVM.getSensor().getDevEui());
        	return ResponseEntity.ok().build();
     }
     

@@ -14,5 +14,5 @@ docker push ramazanfirin/smartmeter:test_08032025
 mvnw verify -DskipTests
 copy target\\machinemonitoring-0.0.1-SNAPSHOT.war src\main\docker
 cd src\main\docker
-docker build -t ramazanfirin/\machinemonitoring:test_08032025 .
-docker push ramazanfirin/\machinemonitoring:test_08032025  
+docker build -t ramazanfirin/machinemonitoring:test_08032025 .
+docker push ramazanfirin/machinemonitoring:test_08032025  
