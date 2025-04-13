@@ -1,0 +1,31 @@
+{
+    "smartmeterApp": {
+        "sensor" : {
+            "home": {
+                "title": "Sensor",
+                "createLabel": "Sensor Oluştur",
+                "createOrEditLabel": "Sensor Oluştur/Güncelle"
+            },
+            "created": "Yeni Sensor Oluşturuldu {{ param }}",
+            "updated": "Sensor Güncellendi {{ param }}",
+            "deleted": "Sensor Silindi {{ param }}",
+            "delete": {
+                "question": "Silmek istediğinize emin misiniz {{ id }}?"
+            },
+            "detail": {
+                "title": "Sensor"
+            },
+            "devEui": "Dev Eui / IMEI",
+            "appEui": "App Eui",
+            "appKey": "App Key",
+            "imei": "Imei",
+            "connectionType": "Bağlantı Tipi",
+            "type": "Sensor Tipi",
+            "thingsBoardDeviceId": "Things Board Device Id",
+            "lastSeenDate": "Son Mesaj Tarihi",
+            "lastMessage": "Son Mesaj",
+            "lastImage": "Son Resim",
+            "meter": "Sayaç"
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "smartmeterApp": {
+        "m2mMessage" : {
+            "home": {
+                "title": "M2M Mesaj",
+                "createLabel": "Yeni M2M Mesaj Oluştur",
+                "createOrEditLabel": "M2M Mesaj Oluştur / Güncelle"
+            },
+            "created": "Yeni M2M Mesaj Oluşturuldu {{ param }}",
+            "updated": "M2M Mesaj Güncellendi {{ param }}",
+            "deleted": "M2M Mesaj Silindi {{ param }}",
+            "delete": {
+                "question": "Silmek İstediğinize emin misiniz  {{ id }}?"
+            },
+            "detail": {
+                "title": "M2M Mesaj"
+            },
+            "base64Message": "Base 64 Mesaj",
+            "hexMessage": "Hex Mesaj",
+            "index": "Index",
+            "totalMessageCount": "Total Message Count",
+            "insertDate": "Date",
+            "image": "Image",
+            "batteryValue": "Batarya",
+            "sensorValue": "Değer",
+            "port": "Port",
+            "imageData": "Image Data",
+            "validImage": "Valid Image",
+            "ip": "Ip",
+            "sensor": "Sensor"
+        }
+    }
+}

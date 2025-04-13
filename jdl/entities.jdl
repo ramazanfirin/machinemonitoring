@@ -1,0 +1,102 @@
+entity Sensor{
+	devEui String required
+	appEui String
+	appKey String 
+	imei String
+	connectionType ConnectionType
+    type Type
+    thingsBoardDeviceId String
+    lastSeenDate ZonedDateTime
+    lastMessage String  maxlength(4000)
+    lastImage ImageBlob 
+}
+
+enum ConnectionType{
+	LORA,
+	M2M
+}
+
+enum Type{
+	VIBRATION,
+	BUTTON,
+	WATER_METER,
+	VIBRATION_ECO,
+	VIBRATION_PRO,
+	CURRENT_METER
+}
+
+entity LorawanMessage{
+	base64Message String maxlength(4000)
+	hexMessage String maxlength(4000)
+	index Long
+	totalMessageCount Long
+	insertDate ZonedDateTime
+	image ImageBlob 
+	batteryValue Float
+	sensorValue Float
+	fPort String
+    fCnt Long
+	imageId String
+}   
+
+entity M2mMessage{
+	base64Message String maxlength(4000)
+	hexMessage String maxlength(4000)
+	index Long
+	totalMessageCount Long
+	insertDate ZonedDateTime
+	image ImageBlob 
+	batteryValue Float
+	sensorValue Float
+	port Long
+	imageData Boolean
+	validImage Boolean
+	ip String
+}   
+
+entity VibrationEcoMessage{
+    batteryValue Float
+	xAxisValue Float	
+	yAxisValue Float
+	zAxisValue Float
+}
+
+entity VibrationProMessage{
+    batteryValue Float
+    temperature Float
+	xVelocity Float	
+	xAcceleration Float
+	yVelocity Float
+	yAcceleration Float
+	zVelocity Float
+	zAcceleration Float
+
+	
+}
+
+entity CurrentMeterMessage{
+    batteryValue Float
+	current Float	
+	totalEnergy Float
+	reason String
+}
+
+entity Meter{
+	meterNo String
+	customerNo String
+	address String
+}
+
+relationship ManyToOne {
+	LorawanMessage{sensor} to Sensor
+	M2mMessage{sensor} to Sensor
+	VibrationEcoMessage{loraMessage} to LorawanMessage
+	VibrationProMessage{loraMessage} to LorawanMessage
+	CurrentMeterMessage{loraMessage} to LorawanMessage
+	Sensor{meter} to Meter
+}	
+	
+
+
+paginate LorawanMessage,Sensor,M2mMessage,VibrationEcoMessage,VibrationProMessage,CurrentMeterMessage,Meter with pagination
+
