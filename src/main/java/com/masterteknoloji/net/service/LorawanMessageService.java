@@ -75,12 +75,13 @@ public class LorawanMessageService {
 			waterMeterService.process(deviceMessageVM);
 		else if(deviceMessageVM.getSensor().getType() == Type.VIBRATION) 	
 			vibrationSensorService.process(deviceMessageVM);
-		else if(deviceMessageVM.getSensor().getType() == Type.BUTTON) 	
+		else if(deviceMessageVM.getSensor().getType() == Type.CURRENT_METER) 	
 			currentMeterService.process(deviceMessageVM);
 		else if(deviceMessageVM.getSensor().getType() == Type.VIBRATION_ECO) 	
 			vibrationEcoSensorService.process(deviceMessageVM);
 		else if(deviceMessageVM.getSensor().getType() == Type.VIBRATION_PRO) 	
 			vibrationProSensorService.process(deviceMessageVM);
+		
 	}
 
 	public DeviceMessageVM convertToDeviceMessage(String message) throws Exception {

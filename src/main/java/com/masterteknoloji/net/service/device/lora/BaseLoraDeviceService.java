@@ -3,6 +3,8 @@ package com.masterteknoloji.net.service.device.lora;
 import java.io.IOException;
 import java.time.ZonedDateTime;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.masterteknoloji.net.config.ApplicationProperties;
@@ -10,6 +12,7 @@ import com.masterteknoloji.net.domain.LorawanMessage;
 import com.masterteknoloji.net.domain.Sensor;
 import com.masterteknoloji.net.repository.LorawanMessageRepository;
 import com.masterteknoloji.net.repository.SensorRepository;
+import com.masterteknoloji.net.web.rest.LorawanMessageResource;
 import com.masterteknoloji.net.web.rest.vm.DeviceMessageVM;
 
 import okhttp3.MediaType;
@@ -20,6 +23,8 @@ import okhttp3.Response;
 
 @Service
 public class BaseLoraDeviceService implements LoraDeviceService{
+	
+     private final Logger log = LoggerFactory.getLogger(BaseLoraDeviceService.class);
 	
 	 private final LorawanMessageRepository lorawanMessageRepository;	
 	
@@ -85,7 +90,7 @@ public class BaseLoraDeviceService implements LoraDeviceService{
 		String url = applicationProperties.getThingsBoardUrl()+sensor.getThingsBoardDeviceId()+"/telemetry ";
         RequestBody body = RequestBody.create(jsonString, MediaType.parse("application/json; charset=utf-8"));
 
-        System.out.println("data gönderiliyor. url: " + url);
+        log.info("Thingsboard da data gönderiliyor. url: " + url);
         
         Request request = new Request.Builder()
                 .url(url)  // URL'yi burada belirtin
@@ -94,9 +99,9 @@ public class BaseLoraDeviceService implements LoraDeviceService{
         
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
-                System.out.println("Response: " + response.body().string());
+                //System.out.println("Response: " + response.body().string());
             } else {
-                System.out.println("Request failed: " + response.code());
+                log.error("Thingsboard Hata: " + response.code());
             }
         }
 		
